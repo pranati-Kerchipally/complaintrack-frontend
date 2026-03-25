@@ -426,9 +426,8 @@ const handY = smoothYRef.current;
     return null;
   };
 
-  const baseComplaints = user.role === "STUDENT"
-    ? complaints.filter(c => c.studentName.toLowerCase().includes(user.username.toLowerCase()))
-    : complaints;
+  const baseComplaints = user.role === "STUDENT"? complaints.filter(c => c.submittedBy && c.submittedBy.toLowerCase() === user.username.toLowerCase())
+  : complaints;
 
   const visibleComplaints = baseComplaints
     .filter(c => filterStatus === "All" ? true : c.status === filterStatus)
