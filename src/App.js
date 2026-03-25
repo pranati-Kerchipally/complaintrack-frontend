@@ -5,7 +5,7 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveCo
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
-const API = "http://localhost:8080/api/complaints";
+const API = "https://complaint-app-w2pi.onrender.com/api/complaints";
 const CATEGORIES = ["Infrastructure", "Academic", "Hostel", "IT Support", "Administration"];
 
 export default function App() {
