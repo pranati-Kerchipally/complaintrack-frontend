@@ -48,6 +48,12 @@ export default function App() {
 
   useEffect(() => { fetchComplaints(); }, [fetchComplaints]);
 
+// Wake up Render backend on app load
+useEffect(() => {
+  fetch("https://complaintrack-backend.onrender.com/api/complaints")
+    .catch(() => {});
+}, []);
+
   const updateStatus = useCallback(async (id, status) => {
     try {
       await fetch(`${API}/${id}`, {
