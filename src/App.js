@@ -5,7 +5,7 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveCo
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
-const API = "https://complaint-app-w2pi.onrender.com/api/complaints";
+const API = "http://localhost:8080/api/complaints";
 const CATEGORIES = ["Infrastructure", "Academic", "Hostel", "IT Support", "Administration"];
 
 export default function App() {
@@ -23,6 +23,7 @@ export default function App() {
   const [filterStatus, setFilterStatus] = useState("All");
   const [showCamera, setShowCamera] = useState(false);
   const [hoveredId, setHoveredId] = useState(null);
+
   const smoothYRef = useRef(0);
 
   const videoRef = useRef(null);
@@ -426,8 +427,9 @@ const handY = smoothYRef.current;
     return null;
   };
 
-  const baseComplaints = user.role === "STUDENT"? complaints.filter(c => c.submittedBy && c.submittedBy.toLowerCase() === user.username.toLowerCase())
-  : complaints;
+  const baseComplaints = user.role === "STUDENT"
+    ? complaints.filter(c => c.studentName.toLowerCase().includes(user.username.toLowerCase()))
+    : complaints;
 
   const visibleComplaints = baseComplaints
     .filter(c => filterStatus === "All" ? true : c.status === filterStatus)
