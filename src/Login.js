@@ -15,8 +15,8 @@ export default function Login({ onLogin }) {
     setError(null);
     try {
       const url = mode === "login"
-        ? "http://localhost:8080/api/auth/login"
-        : "http://localhost:8080/api/auth/register";
+  ? "https://complaintrack-backend.onrender.com/api/auth/login"
+  : "https://complaintrack-backend.onrender.com/api/auth/register";
 
       const res = await fetch(url, {
         method: "POST",
